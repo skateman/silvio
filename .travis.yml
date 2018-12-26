@@ -1,0 +1,12 @@
+language: crystal
+matrix:
+  include:
+  - name: "Unit tests for Crystal"
+    env: TEST_SCRIPT="crystal spec"
+  - name: "High-level testing with ping"
+    env: TEST_SCRIPT="spec/ping/test-server.sh"
+services:
+  docker
+before_install:
+  sudo apt-get install -y libsqlite3-dev ruby ruby-dev bundler
+script: $TEST_SCRIPT

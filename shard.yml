@@ -1,0 +1,25 @@
+name: silvio
+version: 0.1.0
+
+authors:
+  - Dávid Halász <skateman@skateman.eu>
+
+targets:
+  silvio-server:
+    main: src/silvio-server.cr
+  silvio-client:
+    main: src/silvio-client.cr
+
+dependencies:
+  crecto:
+    github: fridgerator/crecto
+  sqlite3:
+    github: crystal-lang/crystal-sqlite3
+  tuntap:
+    github: Papierkorb/tuntap
+    branch: master
+
+
+crystal: 0.27.0
+
+license: MIT
