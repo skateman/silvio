@@ -1,0 +1,7 @@
+/docs/
+/lib/
+/.shards/
+*.dwarf
+/db/*.sqlite3
+/Gemfile.lock
+/shard.lock
