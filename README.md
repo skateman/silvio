@@ -49,9 +49,13 @@ After cloning the repository, you can install the dependencies by running `shard
 5. Create a new Pull Request
 
 Here are some ideas for contributions:
+* Storing IP addresses as numbers instead of strings
+* Optional traffic routing to the Internet (SOCKS-like)
+* Support for IPv6
 * Migrations written in Crystal instead of ActiveRecord
 * REST API for clients & networks CRUD
 * Static frontend for the REST API
+* Load-balancing between multiple instances
 * Support for other database types
 * Tests, tests and tests
 * OpenShift template
