@@ -1,7 +1,7 @@
 # silvio
 [![Build Status](https://travis-ci.org/skateman/silvio.svg?branch=master)](https://travis-ci.org/skateman/silvio)
 
-Silvio is a VPN-over-WebSocket implementation, based on the TUN interface. I am using it to connect all my devices to a single virtual network through a web service. According to [Wikpiedia](https://en.wikipedia.org/wiki/Silvio_Pellico), Silvio (Pellico) was an Italian writer, poet, dramatist and patriot active in the Italian unification. The street where I am currently living is named after him.
+Silvio is a VPN-over-WebSocket implementation, based on the TUN interface. I am using it to connect all my devices to a single virtual network through a web service. According to [Wikpiedia](https://en.wikipedia.org/wiki/Silvio_Pellico), Silvio (Pellico) was an Italian writer, poet, dramatist and patriot active in the Italian unification. I spent some time of my life on a street that was named after him.
 
 ## Installation
 
@@ -59,6 +59,7 @@ Here are some ideas for contributions:
 * Support for other database types
 * Tests, tests and tests
 * OpenShift template
+* Support for Windows and OSX
 
 ## License
 
