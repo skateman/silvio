@@ -37,6 +37,7 @@ docker stop $CLIENT_1 $CLIENT_2
 kill %1
 sleep 1
 
+bin/rake db:drop
 docker rmi $IMAGE
 
 set +x

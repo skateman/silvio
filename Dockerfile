@@ -1,7 +1,8 @@
 FROM alpine
 MAINTAINER Dávid Halász <skateman@skateman.eu>
-
 ENV DATABASE_PATH /mnt/silvio/db.sqlite3
+EXPOSE 8090/tcp
+
 RUN mkdir -p /usr/src/silvio
 COPY . /usr/src/silvio
 
