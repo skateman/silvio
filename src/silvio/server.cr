@@ -31,8 +31,8 @@ class Silvio::Server < HTTP::WebSocketHandler
       token = context.request.headers[Silvio::TOKEN]
 
       if client = client_from_token(token)
-        context.response.headers[Silvio::IP] = client.address.to_s
-        context.response.headers[Silvio::NETMASK] = client.network.netmask.to_s
+        context.response.headers[Silvio::IP] = client.address!
+        context.response.headers[Silvio::NETMASK] = client.network.netmask!
         context.response.headers[Silvio::NETWORK] = client.network.id.to_s
 
         return super(context)
