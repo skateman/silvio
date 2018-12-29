@@ -1,13 +1,11 @@
 require 'ipaddr'
 
 class Network < ActiveRecord::Base
-  belongs_to :user
   has_and_belongs_to_many :users
 
   validates :name, :presence => true
   validates :address, :presence => true
   validates :netmask, :presence => true
-  validates :user, :presence => true
   validate :correct_netmask
 
   private
