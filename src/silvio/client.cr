@@ -14,8 +14,8 @@ class Silvio::Client
 
   def initialize(@url : String, @token : String)
     @ws = connect_ws(@url, @token)
-    @address = @ws.response_headers[Silvio::IP]
-    @netmask = @ws.response_headers[Silvio::NETMASK]
+    @address = @ws.response_headers[IP]
+    @netmask = @ws.response_headers[NETMASK]
     @tun = create_tun
     @tun.up!
     @tun.add_address(@address)
@@ -39,7 +39,7 @@ class Silvio::Client
 
   private def connect_ws(url : String, token : String) : HTTP::WebSocket
     headers = HTTP::Headers.new
-    headers[Silvio::TOKEN] = @token
+    headers[TOKEN] = @token
     HTTP::WebSocket.new(@url, headers)
   end
 
