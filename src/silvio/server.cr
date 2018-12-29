@@ -8,8 +8,8 @@ class Silvio::Server < HTTP::WebSocketHandler
     @clients = {} of String => HTTP::WebSocket
 
     super do |sock, context|
-      network = context.response.headers[Silvio::NETWORK]
-      address = context.response.headers[Silvio::IP]
+      network = context.response.headers[NETWORK]
+      address = context.response.headers[IP]
       src = [network, address].join('@')
       @clients[src] = sock
 
@@ -27,13 +27,13 @@ class Silvio::Server < HTTP::WebSocketHandler
   end
 
   def call(context)
-    if context.request.headers.has_key?(Silvio::TOKEN)
-      token = context.request.headers[Silvio::TOKEN]
+    if context.request.headers.has_key?(TOKEN)
+      token = context.request.headers[TOKEN]
 
       if client = client_from_token(token)
-        context.response.headers[Silvio::IP] = client.address!
-        context.response.headers[Silvio::NETMASK] = client.network.netmask!
-        context.response.headers[Silvio::NETWORK] = client.network.id.to_s
+        context.response.headers[IP] = client.address!
+        context.response.headers[NETMASK] = client.network.netmask!
+        context.response.headers[NETWORK] = client.network.id.to_s
 
         return super(context)
       end
@@ -43,7 +43,7 @@ class Silvio::Server < HTTP::WebSocketHandler
     call_next(context)
   end
 
-  private def client_from_token(token : String) : Silvio::Database::Client | Nil
-    Database.get_by(Silvio::Database::Client, Crecto::Repo::Query.where(token: token).preload(:network))
+  private def client_from_token(token : String) : Database::Client | Nil
+    Database.get_by(Database::Client, Crecto::Repo::Query.where(token: token).preload(:network))
   end
 end
