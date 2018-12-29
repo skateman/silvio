@@ -2,10 +2,8 @@ require 'ipaddr'
 
 class Client < ActiveRecord::Base
   belongs_to :network
-  belongs_to :user
 
   validates :name, :presence => true
-  validates :user, :presence => true
   validates :network, :presence => true
   validates :address, :presence => true
   validate :correct_address

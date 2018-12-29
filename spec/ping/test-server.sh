@@ -11,10 +11,9 @@ bundle install
 bin/rake db:drop db:migrate
 ruby << EOF
 require './config/boot.rb'
-u = User.create(:email => 'test@example.com', :password => 'test')
-n = Network.create(:name => 'network', :address => '192.168.99.0', :netmask => '255.255.255.0', :user => u)
-Client.create(:name => 'client1', :address => '192.168.99.1', :network => n, :user => u, :token => "123456")
-Client.create(:name => 'client2', :address => '192.168.99.2', :network => n, :user => u, :token => "654321")
+n = Network.create(:name => 'network', :address => '192.168.99.0', :netmask => '255.255.255.0')
+Client.create(:name => 'client1', :address => '192.168.99.1', :network => n, :token => "123456")
+Client.create(:name => 'client2', :address => '192.168.99.2', :network => n, :token => "654321")
 EOF
 
 # Create static binaries and run the server
