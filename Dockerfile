@@ -26,7 +26,6 @@ RUN apk add crystal                       \
     shards build silvio-server         && \
     mv bin/silvio-server /bin          && \
                                           \
-    gem uninstall -aIx                 && \
     apk del crystal                       \
             shards                        \
             libressl-dev                  \
