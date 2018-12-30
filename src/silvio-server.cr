@@ -22,8 +22,9 @@ end
 ENV["DATABASE_PATH"] = config[:path].to_s
 
 require "./silvio"
+require "./silvio/api"
 require "./silvio/server"
 
-server = HTTP::Server.new([HTTP::ErrorHandler.new(true), HTTP::LogHandler.new, Silvio::Server.new])
+server = HTTP::Server.new([HTTP::ErrorHandler.new(true), HTTP::LogHandler.new, Silvio::API.new, Silvio::Server.new])
 server.bind_tcp(config[:bind].to_s, config[:port].to_i)
 server.listen
