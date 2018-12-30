@@ -1,5 +1,4 @@
 require "sqlite3"
-require "micrate"
 require "crecto"
 
 module Silvio::Database
@@ -8,9 +7,6 @@ module Silvio::Database
   config do |conf|
     conf.adapter = Crecto::Adapters::SQLite3
     conf.uri = "sqlite3://#{ENV["DATABASE_PATH"]}"
-    # Run the migrations before accessing the database
-    Micrate::DB.connection_url = conf.uri
-    Micrate::Cli.run_up
   end
 
   class Network < Crecto::Model

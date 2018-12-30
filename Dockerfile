@@ -26,6 +26,8 @@ RUN apk add crystal                       \
     shards build silvio-server         && \
     mv bin/silvio-server /bin          && \
                                           \
+    bin/micrate up                     && \
+                                          \
     apk del crystal                       \
             shards                        \
             libressl-dev                  \
