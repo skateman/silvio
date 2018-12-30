@@ -1,6 +1,7 @@
 FROM alpine
 MAINTAINER Dávid Halász <skateman@skateman.eu>
 ENV DATABASE_PATH /mnt/silvio/db.sqlite3
+ENV PORT 8090
 EXPOSE 8090/tcp
 
 RUN mkdir -p /usr/src/silvio
@@ -38,4 +39,4 @@ RUN apk add crystal                       \
     chown -R silvio:silvio $(dirname $DATABASE_PATH)
 
 USER silvio:silvio
-CMD /bin/silvio-server
+CMD /bin/silvio-server -p $PORT
