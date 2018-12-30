@@ -8,6 +8,7 @@ set -x
 
 # Create static binaries and run the server
 shards build --static
+bin/micrate up
 bin/silvio-server &
 
 sleep 5

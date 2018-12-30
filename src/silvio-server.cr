@@ -19,7 +19,7 @@ OptionParser.parse! do |p|
   end
 end
 
-ENV["DATABASE_PATH"] = config[:path].to_s
+ENV["DATABASE_PATH"] ||= config[:path].to_s
 
 require "./silvio"
 require "./silvio/api"

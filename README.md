@@ -5,9 +5,10 @@ Silvio is a VPN-over-WebSocket implementation, based on the TUN interface. I am 
 
 ## Installation
 
-The code is written in Crystal and uses SQLite to store the information about the networks and clients, these are the two main requirements. You can build both the server and the client with the following command:
+The code is written in Crystal and uses SQLite to store the information about the networks and clients, these are the two main requirements. You can build the server and client and run the necessary DB migrations using following commands:
 ```sh
 shards build
+DATABASE_PATH=/path/to/your/db/file bin/micrate up
 ```
 
 ## Usage
