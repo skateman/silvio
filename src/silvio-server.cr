@@ -10,9 +10,9 @@ config = {
 
 OptionParser.parse! do |p|
   p.banner = "Usage: silvio-server [arguments]"
-  p.on("-d", "--database", "Path to the database file") { |path| config[:path] = path }
-  p.on("-b", "--bind", "IP address to listen on, defaults to 0.0.0.0") { |bind| config[:bind] = bind }
-  p.on("-p", "--port", "Port to listen on, defaults to 8090") { |port| config[:port] = port }
+  p.on("-d DATABASE", "--database DATABASE", "Path to the database file") { |path| config[:path] = path }
+  p.on("-b ADDRESS", "--bind ADDRESS", "IP address to listen on, defaults to 0.0.0.0") { |bind| config[:bind] = bind }
+  p.on("-p PORT", "--port PORT", "Port to listen on, defaults to 8090") { |port| config[:port] = port }
   p.on("-h", "--help", "Show this help") do
     puts p
     exit 0
