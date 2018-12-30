@@ -27,7 +27,6 @@ RUN apk add crystal                                  \
     cd /usr/src/silvio                            && \
     bundle install                                && \
     mkdir -p $(dirname $DATABASE_PATH)            && \
-    bin/rake db:migrate                           && \
                                                      \
     shards build silvio-server                    && \
     mv bin/silvio-server /bin                     && \

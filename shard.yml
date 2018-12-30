@@ -13,6 +13,8 @@ targets:
 dependencies:
   crecto:
     github: fridgerator/crecto
+  micrate:
+    github: amberframework/micrate
   sqlite3:
     github: crystal-lang/crystal-sqlite3
   tuntap:
