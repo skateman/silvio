@@ -20,6 +20,8 @@ module Silvio::Database
       field :netmask, String
       has_many :clients, Client
     end
+
+    validate_required [:name, :address, :netmask]
   end
 
   class Client < Crecto::Model
@@ -31,5 +33,6 @@ module Silvio::Database
     end
 
     unique_constraint :token
+    validate_required [:name, :address, :token, :network_id]
   end
 end

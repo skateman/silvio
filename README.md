@@ -14,20 +14,26 @@ shards build
 
 ### Server
 
-For now, you have to use Ruby scripts to create database objects using `ActiveRecord` in an interactive shell. Therefore, you have to run the migrations manually first:
-
-```sh
-export DATABASE_PATH=path/to/your/db/file
-bin/micrate up
-bundle install
-bin/console
-```
-
-If your database is ready, you can start the server with the following command:
+The server can be started with the following command:
 ```
 bin/silvio-server -d path/to/your/db/file
 ```
-The server by default listens on `0.0.0.0:8090`, you can get more information about how to tweak this if you pass the `--help` argument.
+The server by default listens on `0.0.0.0:8090`, you can get more information about how to tweak this if you pass the `--help` argument. Defining clients and networks is possible through the REST API:
+
+```json
+# POST /networks
+{
+  "name": "test-net",
+  "address": "192.168.10.0",
+  "netmask": "255.255.255.0"
+}
+
+# POST /networks/1/clients
+{
+  "name": "test-client",
+  "address": "192.168.10.1"
+}
+```
 
 ### Client
 
@@ -52,8 +58,7 @@ Here are some ideas for contributions:
 * Storing IP addresses as numbers instead of strings
 * Optional traffic routing to the Internet (SOCKS-like)
 * Support for IPv6
-* Migrations written in Crystal instead of ActiveRecord
-* REST API for clients & networks CRUD
+* Authentication for the REST API
 * Static frontend for the REST API
 * Load-balancing between multiple instances
 * Support for other database types
