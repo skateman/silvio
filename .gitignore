@@ -1,8 +1,7 @@
 /docs/
 /lib/
-/bin/silvio-*
+/bin/
 /.shards/
 *.dwarf
 /db/*.sqlite3
-/Gemfile.lock
 /shard.lock
