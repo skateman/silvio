@@ -7,8 +7,8 @@ set -o pipefail
 set -x
 
 # Set up the database
+bin/micrate up
 bundle install
-bin/rake db:drop db:migrate
 ruby << EOF
 require './config/boot.rb'
 n = Network.create(:name => 'network', :address => '192.168.99.0', :netmask => '255.255.255.0')
@@ -36,7 +36,6 @@ docker stop $CLIENT_1 $CLIENT_2
 kill %1
 sleep 1
 
-bin/rake db:drop
 docker rmi $IMAGE
 
 set +x

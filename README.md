@@ -14,12 +14,12 @@ shards build
 
 ### Server
 
-For now, you have to use Ruby scripts to run the migrations. There's also an interactive console to create database objects using `ActiveRecord`:
+For now, you have to use Ruby scripts to create database objects using `ActiveRecord` in an interactive shell. Therefore, you have to run the migrations manually first:
 
 ```sh
-bundle install
 export DATABASE_PATH=path/to/your/db/file
-bin/rake db:migrate
+bin/micrate up
+bundle install
 bin/console
 ```
 
