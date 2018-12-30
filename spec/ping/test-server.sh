@@ -6,24 +6,24 @@ set -e
 set -o pipefail
 set -x
 
-# Set up the database
-bin/micrate up
-bundle install
-ruby << EOF
-require './config/boot.rb'
-n = Network.create(:name => 'network', :address => '192.168.99.0', :netmask => '255.255.255.0')
-Client.create(:name => 'client1', :address => '192.168.99.1', :network => n, :token => "123456")
-Client.create(:name => 'client2', :address => '192.168.99.2', :network => n, :token => "654321")
-EOF
-
 # Create static binaries and run the server
 shards build --static
 bin/silvio-server &
 
+sleep 5
+
+# Create the test network and its clients
+NETWORK=$(curl -XPOST -H "Content-Type: application/json" -d "{\"name\": \"test-net\", \"address\": \"192.168.99.0\", \"netmask\": \"255.255.255.0\"}" http://localhost:8090/networks)
+NET_ID=$(echo $NETWORK | jq ".id")
+CLIENT=$(curl -XPOST -H "Content-Type: application/json" -d "{\"name\": \"client-1\", \"address\": \"192.168.99.1\"}" http://localhost:8090/networks/$NET_ID/clients)
+TOKEN_1=$(echo $CLIENT | jq -r ".token")
+CLIENT=$(curl -XPOST -H "Content-Type: application/json" -d "{\"name\": \"client-2\", \"address\": \"192.168.99.2\"}" http://localhost:8090/networks/$NET_ID/clients)
+TOKEN_2=$(echo $CLIENT | jq -r ".token")
+
 # Build and run the client containers
 IMAGE=$(docker build --force-rm -q -f spec/ping/Dockerfile .)
-CLIENT_1=$(docker run --rm -d --privileged -e TOKEN=123456 $IMAGE)
-CLIENT_2=$(docker run --rm -d --privileged -e TOKEN=654321 $IMAGE)
+CLIENT_1=$(docker run --rm -d --privileged -e TOKEN=$TOKEN_1 $IMAGE)
+CLIENT_2=$(docker run --rm -d --privileged -e TOKEN=$TOKEN_2 $IMAGE)
 
 sleep 5
 
