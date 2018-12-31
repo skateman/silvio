@@ -15,10 +15,10 @@ dependencies:
     github: fridgerator/crecto
   micrate:
     github: amberframework/micrate
+  pg:
+    github: will/crystal-pg
   router:
     github: tbrand/router.cr
-  sqlite3:
-    github: crystal-lang/crystal-sqlite3
   tuntap:
     github: Papierkorb/tuntap
     branch: master

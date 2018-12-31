@@ -5,19 +5,18 @@ Silvio is a VPN-over-WebSocket implementation, based on the TUN interface. I am 
 
 ## Installation
 
-The code is written in Crystal and uses SQLite to store the information about the networks and clients, these are the two main requirements. You can build the server and client and run the necessary DB migrations using following commands:
+The code is written in Crystal and uses PostgreSQL to store the information about the networks and clients You can build the server and the client using following command:
 ```sh
 shards build
-DATABASE_PATH=/path/to/your/db/file bin/micrate up
 ```
 
 ## Usage
 
 ### Server
 
-The server can be started with the following command:
+The server requires an empty PostgreSQL database it can be started with the following command:
 ```
-bin/silvio-server -d path/to/your/db/file
+bin/silvio-server -d postgres://user:pass@host:port/db
 ```
 The server by default listens on `0.0.0.0:8090`, you can get more information about how to tweak this if you pass the `--help` argument. Defining clients and networks is possible through the REST API:
 
@@ -62,7 +61,6 @@ Here are some ideas for contributions:
 * Authentication for the REST API
 * Static frontend for the REST API
 * Load-balancing between multiple instances
-* Support for other database types
 * Tests, tests and tests
 * OpenShift template
 * Support for Windows and OSX
