@@ -31,9 +31,17 @@ class Silvio::Client
       @ws.run
     end
 
-    loop do # TUN -> WS
-      packet = @tun.read_packet
-      @ws.send(packet.frame)
+    spawn do # TUN -> WS
+      loop do
+        packet = @tun.read_packet
+        @ws.send(packet.frame)
+      end
+    end
+
+    # Send a ping every 60 seconds to keep the connection alive
+    loop do
+      @ws.ping
+      sleep 60
     end
   end
 
