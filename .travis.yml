@@ -1,4 +1,8 @@
 language: crystal
+env:
+  global:
+    - DATABASE_PATH=postgres://postgres@/silvio_test
+      CRYSTAL_ENV=test
 matrix:
   include:
   - name: "Unit tests for Crystal"
@@ -6,7 +10,12 @@ matrix:
   - name: "High-level testing with ping"
     env: TEST_SCRIPT="spec/ping/test-server.sh"
 services:
-  docker
+  - docker
+  - postgresql
 before_install:
   sudo apt-get install -y libsqlite3-dev jq
+before_script:
+  psql -c 'create database silvio_test;' -U postgres
 script: $TEST_SCRIPT
+after_script:
+  psql -c 'drop database silvio_test;' -U postgres

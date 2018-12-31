@@ -1,16 +1,17 @@
 require "option_parser"
 
 ENV["CRYSTAL_ENV"] ||= "development"
+ENV["DATABASE_PATH"] ||= "postgres://localhost/silvio_#{ENV["CRYSTAL_ENV"]}"
 
 config = {
-  :path => "db/#{ENV["CRYSTAL_ENV"]}.sqlite3",
+  :path => ENV["DATABASE_PATH"],
   :bind => "0.0.0.0",
   :port => 8090,
 }
 
 OptionParser.parse! do |p|
   p.banner = "Usage: silvio-server [arguments]"
-  p.on("-d DATABASE", "--database DATABASE", "Path to the database file") { |path| config[:path] = path }
+  p.on("-d DATABASE", "--database DATABASE", "Path to the database") { |path| config[:path] = path }
   p.on("-b ADDRESS", "--bind ADDRESS", "IP address to listen on, defaults to 0.0.0.0") { |bind| config[:bind] = bind }
   p.on("-p PORT", "--port PORT", "Port to listen on, defaults to 8090") { |port| config[:port] = port }
   p.on("-h", "--help", "Show this help") do
